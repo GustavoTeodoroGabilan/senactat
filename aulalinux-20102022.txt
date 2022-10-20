@@ -1,0 +1,10 @@
+Linux mint: 15 - .Deb
+Google Chrome -  64bits .deb
+Opera Linux
+
+Gdebi  - instalar navegadores na maquina Mint
+Dependência
+central de aplicativos
+Terminal - apt
+sudo apt install git vim pse
+sudo apt install git vim psensor 
