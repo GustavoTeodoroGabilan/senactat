@@ -5,9 +5,9 @@
 #TEMPO POIS VAI TRAVAR A MÁQUINA VIRTUAL.
 
 #01_ Instalação dos Navegadores (Recomendo via Gdebi)
-	_a - Google Chrome;
-	_b - Opera;
-	_c - Microsoft Edge;
+	_a - Google Chrome; INSTALADO
+	_b - Opera; INSTALADO
+	_c - Microsoft Edge; 
 	_d - Vivaldi;
 	_e - Tor;
 	_f - Brave.
