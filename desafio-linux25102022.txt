@@ -8,7 +8,7 @@
 	_a - Google Chrome; INSTALADO
 	_b - Opera; INSTALADO
 	_c - Microsoft Edge; 
-	_d - Vivaldi;
+	_d - Vivaldi; INSTALADO
 	_e - Tor; INSTALADO
 	_f - Brave.
 	
