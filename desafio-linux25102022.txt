@@ -10,7 +10,7 @@
 	_c - Microsoft Edge; 
 	_d - Vivaldi; INSTALADO
 	_e - Tor; INSTALADO
-	_f - Brave.
+	_f - Brave. INSTALADO
 	
 #02_ Instalação do suporte ao TTF (TrueType Fonts)
 	a_ Ttf-mscorefonts (Gerenciador de Aplicativos)
