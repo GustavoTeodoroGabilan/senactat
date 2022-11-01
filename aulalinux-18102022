@@ -1,0 +1,26 @@
+#01_ MintUpdate
+	a) Atualizar 	--> apt 	--> sources.list
+	b) Repositórios --> apt		--> sources.list
+	   (=Diretório)
+	c) PESQUISAR: O QUE É PPA´s
+	d) Instalar Atualização		--> apt
+
+#02_ Instalação dos Convidados do VirtualBOX
+	a) Dispositivos
+			Inserir imagem do CD dos Convidados
+			
+#03_ Atualizando via Linha de Comando
+	PESQUISAR: O QUE É BASH?
+			   O QUE É SHELL? Shell é uma camada de abstração do bash
+			   O QUE É APT-GET? Software para instalar, remover ou atualização aplicativos
+			   O QUE É SUDO? Su (Super-Usuário - Do = ser)
+			   https://pt.wikipedia.org/wiki/Sudo
+	
+	sudo apt update		--> MintUpdate Atualizar
+	sudo apt upgrade	--> MintUpdate Instalar
+	sudo apt full-upgrade
+	sudo apt dist-upgrade
+	sudo apt autoremove
+	sudo apt autoclean
+	sudo apt clean
+	history
