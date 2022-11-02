@@ -2,11 +2,11 @@ Github: - Diretório = repositório
 Github: - Microsoft = GNU/Linux Open Source
                      (case sensitive) = sensivel a letras maiúsculas e minúsculas 
 Pesquisar: 
-1.Markdown - extensão: *.md
-2.README.md 
-3.Comando: git - Editor: VSCode
+1.Markdown - extensão: *.md - Uma simples linguagem de marcação usada para indicar conteudos iportantes , imagens e links em arquivos de texto simples.
+2.README.md - Usado para mostrar do que irá se tratar aquele diretório
+3.Comando: git - Editor: VSCode - Utilizado para controle de historico sobre arquivos e projetos desenvolvidos em software, permitindo assim uma flexibilidade na segurança, desempenho e no trabalho - O VSCode é um aplicativo no qual se é responsavel pela edição de codigos-fonte
                (Visual Studio Code)
-4.Clonar (comando do git)
+4.Clonar (comando do git) - O clonar é para utilizr de um repositorio ja existente e assim criar uma cópia identica, com os mesmos arquivos, para outro local, mas que não influencia no repositorio do Github
 
 sudo apt update
 sudo apt install git vim
