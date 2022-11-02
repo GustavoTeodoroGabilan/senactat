@@ -1,0 +1,17 @@
+Github: - Diretório = repositório
+Github: - Microsoft = GNU/Linux Open Source
+                     (case sensitive) = sensivel a letras maiúsculas e minúsculas 
+Pesquisar: 
+1.Markdown - extensão: *.md
+2.README.md 
+3.Comando: git - Editor: VSCode
+               (Visual Studio Code)
+4.Clonar (comando do git)
+
+sudo apt update
+sudo apt install git vim
+
+(Abrir no Terminal) area de trabalho
+clonar o diretório:
+git clone https://github.com/GustavoTeodoroGabilan/senactat
+Criamos um clone que não altera no github (uma pasta na area de trabalho)
