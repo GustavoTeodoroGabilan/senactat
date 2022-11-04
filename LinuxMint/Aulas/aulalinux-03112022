@@ -33,3 +33,23 @@ ls -lh = Modo lista detalhado
 cd = Mudar de Diretório
 TAB = Tabular: auto-completar
 cd .. = voltar um diretório
+----------------------------------------------------------------------------------------------------------------------------
+Linkar o documentos com o Github
+1. Gerar uma chave
+2. ir no usuario do github e ir na opção de configurações
+3. Developer settings
+4. Personal access token
+5. Token (classic)
+6. Generate new token (classic)
+- colocar nome
+- 30 dias
+- marcar todas as opções
+7. Gerar o token
+8. abre o terminal da pasta do senac
+9. Digitar:
+-git pull = verifica mudanças no Github
+-git add . = aceitar as mudanças locais
+-git commit -m "Atualizacao" 
+-git config --global user.email "gabilangustavo39@gmail.com"
+ git config --global user.name "GustavoTeodoroGabilan"
+ -git push, usar a chave
