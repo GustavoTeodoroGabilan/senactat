@@ -1,0 +1,38 @@
+Terminal: Ctrl + Alt + T - Bash
+senac@senac-VirtualBox
+senac = seu usuário
+@ = concaternar -> juntar, agrupar, unir
+senac-VirtualBox = nome do computador
+(todos os comandos em minusculo, tendo opçoes e parametros)
+opçoes = sudo -
+parametro = sudo apt
+----------------------------------------------------------------------------------------------------------------------------
+~ = apelido, alias -> faz referencia ao Home
+$ = referência ao usuário sem direito (responsavel pela segurança e por pedir a senha quando for mudar algo)
+# = Super usuário -> root: sudo (responsavel por ser o usuario que é permitido alterar qualquer coisa sem o uso da senha)
+----------------------------------------------------------------------------------------------------------------------------
+sudo -i = tornar o usuário "root"
+exit = voltar para o usuário sem direito (ou Ctrl + D)
+history = usado para acessar o histórico de comandos (guarda 1500 linhas por padrão)
+! = passa para o comando history, a informação de executar o comando de uma certa linha do histórico
+clear = limpar a tela (Ctrl + L), alem de subir o comando que esta digitando para cima
+----------------------------------------------------------------------------------------------------------------------------
+Pedir ajuda no Linux
+Simples = usando o codigo "apt"
+apt --help = opção de comando e ajuda resumida do comando
+Ajuda Complexa = "man"(manual) "apt", manual completo do comando (para sair, basta apertar o "Q" de quit)
+----------------------------------------------------------------------------------------------------------------------------
+GuiaFoca = material online de Linux traduzido, utilizar para consulta caso haja alguma duvida (PT-BR) "https://www.guiafoca.org/guiaonline/"
+ss64 = referência de linha de comando (ordem alfabetica) "https://ss64.com/bash/"
+----------------------------------------------------------------------------------------------------------------------------
+Comandos de Diretório e Arquivos
+git clone = clonar repositório do github
+ls = listar arquivos ou diretórios
+*Cor Azul* = Diretório
+ls -lh = Modo lista detalhado 
+cd = Mudar de Diretório
+TAB = Tabular: auto-completar
+cd .. = voltar um diretório
+
+
+
