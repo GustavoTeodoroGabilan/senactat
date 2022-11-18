@@ -1,0 +1,15 @@
+-v = verboso -> ajuda a encontrar um possivel erro
+alterar o nome do arquivo em linha de comando e mover(utilizando a função de mover para renomear): mv -v 
+mv ORIGEM e DESTINO
+ORIGEM = local de inicio
+DESTINO = local para onde o arquivo foi enviado 
+
+Comando de COPIAR = cp -v ORIGEM e DESTINO
+Salvar = Criar um arquivo no HD, porem tambem utilizado para salvar as mudanças 
+Salvar Como = Criar o arquivo no HD, alem de copiar e renomear o arquivo				
+Imprimir mensagem na tela = echo
+echo SENAC Tatuapé > SENAC.txt = cria um arquivo SENAC e coloca o texto dentro dele pelo "echo"
+ver o conteudo do arquivo = cat
+Comando para listar o conteúdo do arquivo, mas eu posso escolher as linhas
+head = lista o inicio do arquivo
+tail = lista o final do arquivo
