@@ -72,7 +72,7 @@ SW(config)#interface f0/13-24
 SW(config)#switchport access vlan 36
 
 !Entrar na inteface de configuração da porta de GigaEthernet 
-SW(config)#interface gigaEthernet 0/1
+SW(config)#interface gigabitEthernet 0/1
 !Colocando ela no modo trunk, pertencendo a todas as vlans, possibilitando a comunicação entre aparelhos mesmo sendo em switchs diferentes, mas com as mesma vlans e entradas
 SW(config-if)#switchport mode trunk
 ----
