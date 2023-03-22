@@ -1,0 +1,217 @@
+Objetivo da atividade de hoje 21/03/2023.
+
+Primeira etapa.: Iniciar o Cisco Packet Tracer
+				 (se autenticar com a sua conta)
+				 
+Segunda etapa..: Material da aula está na Rede
+				 T:\Publica\!!!!RobsonVaamonde\InfraestruturaDeRede
+
+Terceira etapa.: Se autenticar com a sua Conta no Github
+				 (recomendo para manter o seu material atualizado e organizado)
+				 
+Quarta etapa...: Iniciar o Visual Studio Code
+				 Abrir o projeto do Cisco Packet Tracer
+				 
+Quinta etapa...: INICIAR O MATERIAL InfraestruturaDeRedes-03.pdf
+====================================================================================================
+AULA 7 de InfraestruturaDeRede de Redes
+
+O switch é o equipamento mais facil de se configurar, ja que o mesmo não necessita de uma configuração obrigatoria antes mesmo do funcionamento, e mesmo assim ele é um equipamento fundamental para a criação de uma rede
+
+Segmentação: o switch fornece segmentação de uma rede local, dividindo-a em dominios de colisão independentes para cada porta, alem de uma largura de banda de mídia total,
+usando um estilo de isolamento de comunicação de Ethernet unicast de modo que sejam ouvidas pelos dispositivos origem e destino
+
+Telnet: protocolo utilizado para melhorar a rapidez de manutenção 	
+========================================================================================================================
+Comandos Switch:
+
+!Comentarios no Cisco IOS
+
+!Configuração do Switch Cisco
+
+!Entrar no modo de privilegio
+enable
+    !Data e Hora
+    clock set 20:45:00 14 March 2023
+    !Entrar na Cinfiguração do terminal
+    configure terminal
+        !Nome do host
+        hostname sw-l2-2960-1
+        !ciar uma senha encriptada
+        service password-encryption
+        !Encrementar a data/hora
+        service timestamps log datetime msec
+        !Sem dominio de IP
+        no ip domain-lookup
+        !Aviso a ser mostrado
+        banner motd #AVISO: acesso autorizado somente para funcionarios#
+        !habilitar a senha
+        enable secret 123@senac
+        !Criação de usuarios, privilegios e senhas
+        username senac secret 123@senac
+        username tatuape password 123@senac
+        username admin privilege 15 secret 123@senac
+        !adicionar um dominio de IP
+        ip domain-name senac.br !(Criado para configuração do ssh)
+        !Criptografar a chave / Modulus 1024: maior segurança graças aos numeros que sao mais dificeis de criptografar e de descriptografar
+        crypto key generate rsa general-keys modulus 1024!(Criado para configuração do ssh)
+        !configuração do SSH !(Criado para configuração do ssh)
+        ip ssh version 2 !(Criado para configuração do ssh)
+        ip ssh time-out 60 !(Criado para configuração do ssh)
+        ip ssh authentication-retries 2  !(Criado para configuração do ssh)
+        !entrar no console 0
+        line console 0  
+            !permitir o login dos usuarios locais
+            login local
+            !Colocando uma senha 
+            password 123@senac
+            !Logs tenham sincronismo
+            logging synchronous
+            !Executar a saido com base em um tempo (5min e 30sec)
+            exec-timeout 5 30
+            !Voltar um nivel
+            exit
+        !habilitando da line 0 a 4 em linha virtual
+        line vty 0 4
+            !Criando um login para a linha virtual
+            login local 
+            !senha
+            password 123@senac
+            !Logs tenham sincronismo
+            logging synchronous
+            !Executar a saido com base em um tempo (5min e 30sec)
+            exec-timeout 5 30
+            !Protocolo de transporte interno permitindo todos os acessos remotos de transporte de todos os switchs
+            transport input ssh (Trocado)
+            !salvar sem sair do local
+            do wr
+            !Descer um nivel
+            exit
+        !Indentificamos o gateway principal
+        ip default-gateway 192.168.1.254
+        !Entrar na interface da vlan 1
+        interface vlan 1
+        !Descrição da interface para administração remota
+            description Interface de SVI
+            !Dando um IP para a interface
+            ip address 192.168.1.250 255.255.255.0
+            !Ligar interface
+            no shutdown
+            !Sair de todas os niveis
+            end
+    !Salvar
+    copy running-config startup-config
+    !confirmação dos comandos
+    show running-config
+    !mostrar o banco de dados da interface
+    show ip interface brief
+    !mostrar banco de dados da vlan
+    show vlan brief
+    !confirmação para ir para o proximo
+    exit
+
+    !Testando o acesso remoto do Desktop
+    telnet 192.168.1.250
+    telnet 192.168.1.251
+    !Usuarios sendo utilizados
+    show users
+==================================================================================================================================================	
+	SSH:
+	!dentro do prompt de comandos
+ssh -l senac 192.168.1.250
+123@senac
+
+!mostrar as configurações e conexões
+show users
+show ip ssh
+show ssh
+
+==================================================================================================================================================
+ROTEADOR: 
+!Comentarios no Cisco IOS
+
+!Configuração do Switch Cisco
+
+!Entrar no modo de privilegio
+enable
+    !Data e Hora
+    clock set 20:45:00 14 March 2023
+    !Entrar na Cinfiguração do terminal
+    configure terminal
+        !Nome do host
+        hostname rt-1941-1
+        !ciar uma senha encriptada
+        service password-encryption
+        !Encrementar a data/hora
+        service timestamps log datetime msec
+        !Achar problemas no roteador
+        service timestamps debug datetime msec
+        !Sem dominio de IP
+        no ip domain-lookup
+        !Aviso a ser mostrado
+        banner motd #AVISO: acesso autorizado somente para funcionarios#
+        !aumentar a seguraça da senha, tamanho minimo de senha
+            security password min-length
+        !habilitar a senha
+        enable secret 123@senac
+        !Criação de usuarios, privilegios e senhas
+        username senac secret 123@senac
+        username tatuape password 123@senac
+        username admin privilege 15 secret 123@senac
+        !adicionar um dominio de IP
+        ip domain-name senac.br
+        !Criptografar a chave / Modulus 1024: maior segurança graças aos numeros que sao mais dificeis de criptografar e de descriptografar
+        crypto key generate rsa general-keys modulus 1024
+        !configuração do SSH
+        ip ssh version 2
+        ip ssh time-out 60
+        ip ssh authentication-retries 2
+            !Bloquear por tempo
+            login block-for 120 attempts 2 within 60
+              
+        !entrar no console 0
+        line console 0  
+            !permitir o login dos usuarios locais
+            login local
+            !Colocando uma senha 
+            password 123@senac
+            !Logs tenham sincronismo
+            logging synchronous
+            !Executar a saido com base em um tempo (5min e 30sec)
+            exec-timeout 5 30
+            !Voltar um nivel
+            exit
+        !habilitando da line 0 a 4 em linha virtual
+        line vty 0 4
+            !Criando um login para a linha virtual
+            login local 
+            !senha
+            password 123@senac
+            !Logs tenham sincronismo
+            logging synchronous
+            !Executar a saido com base em um tempo (5min e 30sec)
+            exec-timeout 5 30
+            !Protocolo de transporte interno permitindo todos os acessos remotos de transporte de todos os switchs
+            transport input ssh
+            !salvar sem sair do nivel
+            do wr
+            !Descer um nivel
+            end
+       
+    !Salvar
+    copy running-config startup-config
+    !confirmação dos comandos
+    show running-config
+    !mostrar o banco de dados da interface
+    show ip interface brief
+    !mostrar banco de dados da vlan
+    show vlan brief
+    !confirmação para ir para o proximo
+    exit
+
+    !Testando o acesso remoto do Desktop
+    telnet 192.168.1.250
+    telnet 192.168.1.251
+    !Usuarios sendo utilizados
+    show users
+
