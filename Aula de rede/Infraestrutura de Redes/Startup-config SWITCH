@@ -1,0 +1,214 @@
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname sw-g05
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$69Hi$HYTxPPyukYCa20kyjrywj1
+!
+username gabriel privilege 15 secret 5 $1$na87$9TgiMQmQVdLUD7B/hlDNY0
+username paulo privilege 15 secret 5 $1$mLvL$zNBk2FKDXjLqYCue53h6C/
+username gabriela privilege 15 secret 5 $1$lEmT$7cGTmNigy/0LAdu9cYdjd0
+username gustavo privilege 15 secret 5 $1$CLKY$J.CMfHkVLt092841c7Ivk1
+!
+!
+no aaa new-model
+system mtu routing 1500
+no ip domain-lookup
+ip domain-name senac.br
+!
+!
+login block-for 120 attempts 4 within 60
+!
+!
+crypto pki trustpoint TP-self-signed-2307117184
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2307117184
+ revocation-check none
+ rsakeypair TP-self-signed-2307117184
+!
+!
+crypto pki certificate chain TP-self-signed-2307117184
+ certificate self-signed 01
+  30820247 308201B0 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32333037 31313731 3834301E 170D3933 30333031 30303031
+  30355A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 33303731
+  31373138 3430819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100BD97 B3B934D8 08227205 DCB925F4 5812B08E 78AF1F6E 1047C6EB 1F53CFDB
+  BE0FB31E 123C6129 B7B6F03A 12737ECC 96B6088E 57AA36E8 D38602B1 718C9ABD
+  F04039F3 721E08AF 320AF7B6 1E841FE0 22C78FB6 E6529B2D 6CA65DBA AE60656B
+  58BEAAE0 DC3F3F3F 9E70FA6D 97C10281 8FEEFD26 F76A8A8E C70D3E25 1E96D68B
+  71FB0203 010001A3 6F306D30 0F060355 1D130101 FF040530 030101FF 301A0603
+  551D1104 13301182 0F73772D 6730352E 73656E61 632E6272 301F0603 551D2304
+  18301680 145FA303 90690990 0E9B04E4 CD822826 BA3BF664 77301D06 03551D0E
+  04160414 5FA30390 6909900E 9B04E4CD 822826BA 3BF66477 300D0609 2A864886
+  F70D0101 04050003 818100A5 A5EC2082 2D19D251 E832B4DC 5A8CCD29 C3BC90F8
+  27E0F428 8C9CB976 DE11B372 5869100A 34C2906B 060C1B06 8858C09D C3DD0B19
+  F03D808B 2012EE02 85495E02 5282EB8D 150D6DCD 15D8C033 CAAF96DC C1B61046
+  32D3BDFA 4CD28EF5 5BBBE725 E28FC5D1 249477DC 52F452E2 A002967D 7CF6FE54
+  F9C3F724 DDC5B10A EF248A
+  quit
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+ip ssh time-out 60
+ip ssh authentication-retries 2
+ip ssh version 2
+!
+!
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+ description Interface de Acesso da VLAN 51 do GUSTAVO
+ switchport access vlan 51
+ switchport mode access
+!
+interface FastEthernet0/3
+ description Interface de Acesso da VLAN 52 do PAULO
+ switchport access vlan 52
+ switchport mode access
+!
+interface FastEthernet0/4
+ description Interface de Acesso da VLAN 53 do GABRIEL
+ switchport access vlan 53
+ switchport mode access
+!
+interface FastEthernet0/5
+ description Interface de Acesso da VLAN 54 do GABRIELA
+ switchport access vlan 54
+ switchport mode access
+!
+interface FastEthernet0/6
+ description Interface de Acesso da VLAN 55 Wireless
+ switchport access vlan 55
+ switchport mode access
+!
+interface FastEthernet0/7
+ shutdown
+!
+interface FastEthernet0/8
+ shutdown
+!
+interface FastEthernet0/9
+ shutdown
+!
+interface FastEthernet0/10
+ shutdown
+!
+interface FastEthernet0/11
+ shutdown
+!
+interface FastEthernet0/12
+ shutdown
+!
+interface FastEthernet0/13
+ shutdown
+!
+interface FastEthernet0/14
+ shutdown
+!
+interface FastEthernet0/15
+ shutdown
+!
+interface FastEthernet0/16
+ shutdown
+!
+interface FastEthernet0/17
+ shutdown
+!
+interface FastEthernet0/18
+ shutdown
+!
+interface FastEthernet0/19
+ shutdown
+!
+interface FastEthernet0/20
+ shutdown
+!
+interface FastEthernet0/21
+ shutdown
+!
+interface FastEthernet0/22
+ shutdown
+!
+interface FastEthernet0/23
+ shutdown
+!
+interface FastEthernet0/24
+ description Interface de Trunk com o Router 2911 do Grupo-05
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan50
+ description Interface SVI de Gerenciamento do Grupo-05
+ ip address 172.16.50.253 255.255.255.0
+!
+ip default-gateway 172.16.50.254
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+banner motd ^C
+$$\                                                                        $$\                           $$\
+$$ |                                                                       $$ |                          $$ |
+$$ |      $$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\        $$$$$$$\   $$$$$$\  $$ | $$$$$$\   $$$$$$$\       $$ |
+$$ |      \____$$\ $$  __$$\ $$  __$$\ $$  __$$\       $$  __$$\ $$  __$$\ $$ | \____$$\ $$  _____|      $$ |
+$$ |      $$$$$$$ |$$ |  $$ |$$ /  $$ |$$ /  $$ |      $$ |  $$ |$$$$$$$$ |$$ | $$$$$$$ |\$$$$$$\        \__|
+$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |      $$ |  $$ |$$   ____|$$ |$$  __$$ | \____$$\
+$$$$$$$$\\$$$$$$$ |$$ |  $$ |\$$$$$$$ |\$$$$$$  |      $$ |  $$ |\$$$$$$$\ $$ |\$$$$$$$ |$$$$$$$  |      $$\
+\________|\_______|\__|  \__| \____$$ | \______/       \__|  \__| \_______|\__| \_______|\_______/       \__|
+                             $$\   $$ |                                                          
+                             \$$$$$$  |                                                          
+                              \______/                                                           
+$$$$$$$\  $$\                           $$\           $$\                                        
+$$  __$$\ \__|                          $$ |          $$ |                                       
+$$ |  $$ |$$\  $$$$$$\   $$$$$$\   $$$$$$$ | $$$$$$\  $$ | $$$$$$\  $$\   $$\  $$$$$$$\  $$$$$$\ 
+$$$$$$$\ |$$ |$$  __$$\ $$  __$$\ $$  __$$ |$$  __$$\ $$ |$$  __$$\ $$ |  $$ |$$  _____|$$  __$$\
+$$  __$$\ $$ |$$ /  $$ |$$ /  $$ |$$ /  $$ |$$$$$$$$ |$$ |$$ /  $$ |$$ |  $$ |$$ /      $$ /  $$ |
+$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$   ____|$$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |  $$ |
+$$$$$$$  |$$ |\$$$$$$$ |\$$$$$$  |\$$$$$$$ |\$$$$$$$\ $$ |\$$$$$$  |\$$$$$$  |\$$$$$$$\ \$$$$$$  |
+\_______/ \__| \____$$ | \______/  \_______| \_______|\__| \______/  \______/  \_______| \______/
+              $$\   $$ |                                                                         
+              \$$$$$$  |                                                                         
+               \______/ ^C
+!
+line con 0
+ exec-timeout 5 30
+ password 7 091D1C5A3916121C0A0F
+ logging synchronous
+ login local
+line vty 0 4
+ exec-timeout 5 30
+ password 7 091D1C5A3916121C0A0F
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+end
