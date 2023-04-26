@@ -1,0 +1,84 @@
+Aula 01 de Linux Server e Cybersegurança
+
+Criamos uma pasta com nosso nome para fazer o backup e onde ficara o Servidor, e dentro criamos outra pasta chamada UbuntuServer
+
+apos executar o VirtualBox, utilizamos as seguintes configurações:
+
+-nome: WebServer
+-Pasta da Maquina: D:\GustavoTeodoro\UbuntuServer
+-tipo: Linux
+-Versao: Ubuntu 64bits
+-Tamanho da memoria: 4096
+-tamanho do arquivo: 50GB
+
+Entrando nas configurações da maquina virtual:
+Sistema: Desativamos o relogio UTC
+*Processador:  2CPU e habilitar as caixas abaixo
+
+Monitor: 128MB na memoria de video
+
+Rede:
+-Conectado a Placa em modo Bridge
+-Nome: Intel Ethernet Connection I217-LM
+
+Feito a configuração, iniciamos a maquina
+
+iniciamos a ISO ubuntu-22.04.2-live-server-amd64
+
+Entrar no Try or Install Ubuntu Server
+
+*Ubuntu Server with the HWE kernel é utilizado para maquinas com alto desempenho*
+
+Selecionar a Linguagem em Ingles
+
+!Selecionamos a opção Continue without updating!
+
+Selecionar o Layout: Portuguese (Brazil) e depois o Done
+
+depois Done novamente, Deixando apenas o Ubuntu Server habilitado
+
+dentro do Storage configuration colocamos no Used Devices 47.996G no ubuntu-lv e depois um Done e Continue
+
+Profile setup:
+Your name: Gustavo Teodoro
+Your server's name: wsteodoro
+Pick a username: senac
+Password: 123@senac
+
+SSH Setup:
+Marcar o Instal OpenSSH server com o "espaço"
+
+Depois dar reboot
+
+Logar com o usuario e senha criados
+
+com o powershell aberto
+primeiro usamos o ping 10.26.44.40
+e depois ssh senac@10.26.44.40
+
+dentro do shh uilizamos os seguintes comando
+-sudo apt update
+-sudo apt list --upgradable
+-sudo apt upgrade
+-sudo apt dist-upgrade
+-sudo apt full-upgrade
+-sudo apt autoremove
+-sudo apt autoclean
+-sudo apt clean
+-sudo reboot						
+
+Para desligar o Servidor
+-sudo poweroff (desligar o sevidor)
+-sudo reboot (reboota do jeito certo)
+-sudo init 0 (indicar para o servidor desligar forçadamente)
+-sudo init 6 (indicar para o servidor rebootar forçadamente)
+-sudo shutdown(tem todos os comando anteriores dentro dele)
+*sudo shutdown -r *horario* (Desligara o servidor no horario determinado
+*sudo shutdown -P/-h (desligar o servidor depois de 60 segundos)
+*sudo shutdown -h/-p now (desliga o servidor imediatamente)
+*sudo shutdown -c (cancelar o shutdown)
+
+IP:
+-ip address (ver o ip do servidor)
+
+-date (mostra a data e hora no servidor)
