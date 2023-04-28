@@ -1,0 +1,116 @@
+LinuxServer AULA 02
+
+cd: entrar no direotiro via comando
+entramos em:
+-cd .\Users\
+-cd .\gustavo.tgabilan\
+-cd .\.ssh\
+e por fim um ls
+
+ls: listar os arquivos daquele diretorio
+e deletamos o unico arquivo de la:
+-del .\knows_hosts
+
+cat: lista o conteudo de um arquivo
+entramos no:
+cat /etc/hostname
+
+sudo: apenas administrador
+vim: editor de texto por linha de comando
+
+-sudo vim /etc/hostname
+
+FQDN: nome de dominio totalmente qualificado (criar um controlador de dominio)
+
+dentro do conteudo do arquivo:
+-INSERT
+-wsteodoro.senac.intra
+*sempre le da direita para a esquerda*
+assim ele pertencera ao controle do "senac.intra"
+
+para sair devemos dar:
+-exit (para sair do INSERT)
+-SHIFT+:
+-x (minusculo para sair salvando)
+
+logo em seguida entrar em "cat /etc/hosts" (um banco de dados)
+e alterar ela em "sudo vim /etc/hosts"
+alterar a linha 2 para "wsteodoro.senac.intra       wsteodoro"
+e depois saindo e salvando
+e por fim dar "sudo reboot"
+
+agora antes do login, devera aparecer "wsteodoro.senac.intra" logo na primeira linha
+
+depois  usaremos os comando:
+-sudo hostname (ver o hostname totalmente qualificado)
+-sudo hostname -A (mostra todo o nome)
+-sudo hostname -d (mostra o dominio no qual pertence ou seja "senac.intra")
+-sudo hostname -i (mostra o ip do dominio)
+
+Configuração de Data e Hora:
+
+-sudo localectl (localidade do controle do servidor)
+ LANG=en_US.UTF-8 (en_US e a localidade e o .UTF-8 habilita o ingles nacional)
+-sudo locale -a (mostra apenas a localidade)
+-sudo locale-gen pt_BR.UTF-8 (para colocar em PT-BR, sendo os 2 ao mesmo tempo)
+-sudo localectl set-locale LANG=pt_BR.UTF-8 (colocar a localidade no Brasil)
+-sudo update-locale LANG=pt_BR.UTF-8 LC_ALL=pt_BR.UTF-8 LANGUAGE="pt_BR:pt:en" (atualiza as localidades para que a lingua padrao seja PT-BR, ma entendera os caracteres em ingles e PT-PT)
+-sudo reboot
+-sudo timedatectl (controla a data e hora do servidor)
+-sudo timedatectl set-timezone "America/Sao_Paulo" (colocar a data e hora de São Paulo
+*pegar a data e hora do site "ntp.br"*
+
+Para sincronizar a data e hora com o servidor
+-sudo vim /etc/systemd/timesyncd.conf (editar o arquivo dentro desses diretorios)
+-Ir ate o "[Time]"
+-INSERT
+-apagar o # do "NTP ="
+-escrever "NTP=a.st1.ntp.br"
+-apagar o # do "FallbackNTP"
+-escrever "FallbackNTP=a.ntp.br"
+-ESC
+-shift + :
+-x (minusculo)
+-sudo systemctl restart systemd-timesyncd.service (reiniciar o serviço)
+-sudo systemctl status systemd-timesyncd.service (verificar o estado dos serviços)
+
+Configuração de Rede:
+-sudo apt update
+-sudo apt install bridge-utils ifenslave net-tools (instalar os seguintes aplicativos)
+-sudo lspci -v | grep -i ethernet (opção de redirecionamento | filtrar com a palavra ethernet)
+-sudo lshw -class network (lista as placas de redes intaladas)
+-sudo ifconfig -a (mostrar tudo do ifconfig)
+-sudo ip address show (mostra so o ip, sem o gateway)
+-sudo route -n (mostra os endereços ips do servidor)
+-sudo resolvectl (informação do cache dos servidores DNS)
+-cd /etc/netplan
+-sudo vim 00-installer-config.yaml
+-INSERT
+-alterar o "dhcp4" para false
+-Enter
+-apagar UM espaço
+-colocar a variavel "addresses: [10.26.44.22/24]"
+-Enter
+-apagar UM espaço
+-adicionar a variavel "gateway4: 10.26.44.1"
+-Enter
+-apagar UM espaço
+adicionar a variavel "nameservers:"
+-Enter
+-adicionar a variavel "addresses: [8.8.8.8, 8.8.4.4]
+-Enter
+-adicionar a variavel "search: [senac.intra]"
+-ESC
+-shift + :
+-x (minusculo)
+-sudo netplan --debug apply (aplicar as alterações)
+*Agora entramos via ssh pelo ip 10.26.44.222*
+
+Adicionar as informações de pesquisa de IP:
+-sudo vim /etc/hosts
+-na linha 3 colocar "10.26.44.222	wsteodoro.senac.intra	wsteodoro"
+-ESC
+-shift + :
+-x (minusculo)
+-sudo reboot
+
